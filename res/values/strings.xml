@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Tribe Dining</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Welcome to Tribe Dining!</string>
+    <string name="splash_button">Continue to App</string>
+    <string name="sadler_center">Sadler Center</string>
+    <string name="the_caf">The &quot;Caf&quot;</string>
+    <string name="marketplace">Marketplace</string>
+    <string name="title_activity_display_dining_halls">Which Dining Hall?</string>
+    <string name="title_activity_display_sadler_food">Sadler Center</string>
+    <string name="title_activity_display_caf_food">The &quot;Caf&quot;</string>
+    <string name="title_activity_display_marketplace_food">Marketplace</string>
+    <string name="title_activity_display_caf_food_list">The &quot;Caf's&quot; Menu</string>
+    <string name="title_activity_caf_brunch">Caf Brunch</string>
+    <string name="title_activity_caf_breakfast">Caf Breakfast</string>
+    <string name="title_activity_caf_lunch">Caf Lunch</string>
+    <string name="title_activity_caf_dinner">Caf Dinner</string>
+    <string name="title_activity_sadler_breakfast">Sadler Breakfast</string>
+    <string name="title_activity_sadler_brunch">Sadler Brunch</string>
+    <string name="title_activity_sadler_lunch">Sadler Lunch</string>
+    <string name="title_activity_sadler_dinner">Sadler Dinner</string>
+    <string name="title_activity_marketplace_breakfast">Marketplace Breakfast</string>
+    <string name="title_activity_marketplace_lunch">Marketplace Lunch</string>
+    <string name="title_activity_marketplace_dinner">Marketplace Dinner</string>
+    <string name="title_activity_generating_screen">Fetching your menu items...</string>
+    <string name="title_activity_food_list_display">Menu</string>
+
+</resources>
