@@ -6,7 +6,7 @@
     <string name="title_activity_main">Welcome to Tribe Dining!</string>
     <string name="splash_button">Continue to App</string>
     <string name="sadler_center">Sadler Center</string>
-    <string name="the_caf">The &quot;Caf&quot;</string>
+    <string name="the_caf">The \&quot;Caf\&quot;</string>
     <string name="marketplace">Marketplace</string>
     <string name="title_activity_display_dining_halls">Which Dining Hall?</string>
     <string name="title_activity_display_sadler_food">Sadler Center</string>
@@ -24,7 +24,7 @@
     <string name="title_activity_marketplace_breakfast">Marketplace Breakfast</string>
     <string name="title_activity_marketplace_lunch">Marketplace Lunch</string>
     <string name="title_activity_marketplace_dinner">Marketplace Dinner</string>
-    <string name="title_activity_generating_screen">Fetching your menu items...</string>
+    <string name="title_activity_generating_screen">Fetching your menu items&#8230;</string>
     <string name="title_activity_food_list_display">Menu</string>
 
 </resources>
