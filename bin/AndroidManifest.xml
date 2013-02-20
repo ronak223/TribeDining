@@ -155,6 +155,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="tribe.dining.DisplayDiningHalls" />
         </activity>
+        <activity
+            android:name="tribe.dining.DisplayTimes"
+            android:label="@string/title_activity_display_times"
+            android:parentActivityName="tribe.dining.DisplayDiningHalls" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="tribe.dining.DisplayDiningHalls" />
+        </activity>
     </application>
 
 </manifest>

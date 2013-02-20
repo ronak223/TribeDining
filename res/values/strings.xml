@@ -26,5 +26,8 @@
     <string name="title_activity_marketplace_dinner">Marketplace Dinner</string>
     <string name="title_activity_generating_screen">Fetching your menu items&#8230;</string>
     <string name="title_activity_food_list_display">Menu</string>
+    <string name="title_activity_display_times">DisplayTimes</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
