@@ -39,17 +39,26 @@ public class DisplayDiningHalls extends Activity{
     }
     
     public void getSadlerFood(View view){
-    	Intent intent = new Intent(this, DisplaySadlerFood.class);
+    	Intent intent = new Intent(this, DisplayTimes.class);
+    	Bundle bundle = new Bundle();
+    	bundle.putString("place", "Sadler");
+    	intent.putExtras(bundle);
     	startActivity(intent);
     }
     
     public void getCafFood(View view){
-    	Intent intent = new Intent(this, DisplayCafFood.class);
+    	Intent intent = new Intent(this, DisplayTimes.class);
+    	Bundle bundle = new Bundle();
+    	bundle.putString("place", "Commons");
+    	intent.putExtras(bundle);
     	startActivity(intent);
     }
     
     public void getMarketplaceFood(View view){
-    	Intent intent = new Intent(this, DisplayMarketplaceFood.class);
+    	Intent intent = new Intent(this, DisplayTimes.class);
+    	Bundle bundle = new Bundle();
+    	bundle.putString("place", "Marketplace");
+    	intent.putExtras(bundle);
     	startActivity(intent);
     }
 
