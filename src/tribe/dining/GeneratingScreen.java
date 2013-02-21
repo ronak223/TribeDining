@@ -15,6 +15,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -41,9 +42,12 @@ public class GeneratingScreen extends Activity implements Runnable {
 		time = (String) bundle.get("time");
 		/* TODO: create day spinner with default set to today using calendar .get method */
 		day = (Integer) bundle.get("day");
-		generatethread = new Thread(this);
 		
+		//Pass in status variable
+		generatethread = new Thread(this);
 		generatethread.start();
+		
+		
 	}
 
 	@Override
@@ -71,7 +75,7 @@ public class GeneratingScreen extends Activity implements Runnable {
 	}
 	
 	public void run() {
-		/*TODO: Create progress bar to show something is happening while app is filling array*/
+		/*TODO: Create progress bar to show something is happening while app is filling array*/		
 		ArrayList<String> foodArray = null;
 		
 		String url = "";
@@ -135,16 +139,29 @@ public class GeneratingScreen extends Activity implements Runnable {
 		
 		}
 		
+		//Document object to retreive to
 		Document doc = null;
-		try {
-			doc = Jsoup.connect(url).get();
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		} 
+		//Number of attempts to connect to page
+		int count = 5;
+		
+		while (count > 0) {
+			count--;
+			try {
+				doc = Jsoup.connect(url).get();
+				break;
+			} catch (Exception e) {
+				Log.w("debug", "Failed to get document. Retrying...");
+			}
+		}
+		
+		if (doc == null) {
+			Log.e("debug", "Error retreiving document.");
+			return; //TODO: Exit with message
+		}
+		
 	    String output = doc.outerHtml(); 
 	    
-	  //System.out.println(output);
+	    //System.out.println(output);
         BufferedReader bufReader = new BufferedReader(new StringReader(output));
         String line=null;
         
