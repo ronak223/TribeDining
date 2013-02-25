@@ -6,6 +6,9 @@ import java.io.StringReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -78,66 +81,12 @@ public class GeneratingScreen extends Activity implements Runnable {
 		/*TODO: Create progress bar to show something is happening while app is filling array*/		
 		ArrayList<String> foodArray = null;
 		
-		String url = "";
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM_dd_yyyy");
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-		
-		//sets URL according to params, using direct links
 		String date = dateFormat.format(calendar.getTime());
-		//String sadlerBrunchURL = "http://www.campusdish.com/en-US/CSMA/WilliamMary/Menus/SadlerCenterRFoC.htm";
-		String sadlerLunchURL = "http://www.campusdish.com/en-US/CSMA/WilliamMary/Menus/SadlerCenterRFoC.htm?LocationName=Sadler%20Center%20RFoC&MealID=16&OrgID=231624&Date=" + date + "&ShowPrice=False&ShowNutrition=True";
-		String sadlerBreakfastURL = "http://www.campusdish.com/en-US/CSMA/WilliamMary/Menus/SadlerCenterRFoC.htm?LocationName=Sadler%20Center%20RFoC&MealID=1&OrgID=231624&Date=" + date + "&ShowPrice=False&ShowNutrition=True";
-		String sadlerDinnerURL = "http://www.campusdish.com/en-US/CSMA/WilliamMary/Menus/SadlerCenterRFoC.htm?LocationName=Sadler%20Center%20RFoC&MealID=17&OrgID=231624&Date=" + date + "&ShowPrice=False&ShowNutrition=True";
-		String marketplaceBreakfastURL = "http://www.campusdish.com/en-US/CSMA/WilliamMary/Menus/Marketplace.htm?LocationName=Marketplace&MealID=1&OrgID=231624&Date=" + date + "&ShowPrice=False&ShowNutrition=True";
-		String marketplaceLunchURL = "http://www.campusdish.com/en-US/CSMA/WilliamMary/Menus/Marketplace.htm?LocationName=Marketplace&MealID=16&OrgID=231624&Date=" + date + "&ShowPrice=False&ShowNutrition=True";
-		String marketplaceDinnerURL = "http://www.campusdish.com/en-US/CSMA/WilliamMary/Menus/Marketplace.htm?LocationName=Marketplace&MealID=17&OrgID=231624&Date=" + date + "&ShowPrice=False&ShowNutrition=True";
-		//String commonsBrunchURL = "http://www.campusdish.com/en-US/CSMA/WilliamMary/Menus/CommonsFreshFoodCompany.htm";
-		String commonsLunchURL = "http://www.campusdish.com/en-US/CSMA/WilliamMary/Menus/CommonsFreshFoodCompany.htm?LocationName=Commons%20Fresh%20Food%20Company&MealID=16&OrgID=231624&Date=" + date + "&ShowPrice=False&ShowNutrition=True";
-		String commonsBreakfastURL = "http://www.campusdish.com/en-US/CSMA/WilliamMary/Menus/CommonsFreshFoodCompany.htm?LocationName=Commons%20Fresh%20Food%20Company&MealID=1&OrgID=231624&Date=" + date + "&ShowPrice=False&ShowNutrition=True";
-		String commonsDinnerURL = "http://www.campusdish.com/en-US/CSMA/WilliamMary/Menus/CommonsFreshFoodCompany.htm?LocationName=Commons%20Fresh%20Food%20Company&MealID=16&OrgID=231624&Date=" + date + "&ShowPrice=False&ShowNutrition=True";
 		
-		if(location.equals("Sadler")){
-			/**if(time.equals("Brunch")){
-				url = sadlerBrunchURL;
-			}*/
-			if(time.equals("Lunch")){
-				url = sadlerLunchURL;
-			}
-			else if(time.equals("Breakfast")){
-				url = sadlerBreakfastURL;
-			}
-			else if(time.equals("Dinner")){
-				url = sadlerDinnerURL;
-			}
-		}
-		else if(location.equals("Commons")){
-			/**if(time.equals("Brunch")){
-				url = commonsBrunchURL;
-			}*/
-			if(time.equals("Lunch")){
-				url = commonsLunchURL;
-			}
-			else if(time.equals("Breakfast")){
-				url = commonsBreakfastURL;
-			}
-			else if(time.equals("Dinner")){
-				url = commonsDinnerURL;
-			}
-		
-		}
-		else if(location.equals("Marketplace")){
-			if(time.equals("Lunch")){
-				url = marketplaceLunchURL;
-			}
-			else if(time.equals("Breakfast")){
-				url = marketplaceBreakfastURL;
-			}
-			else if(time.equals("Dinner")){
-				url = marketplaceDinnerURL;
-			}
-		
-		}
+		String url = buildURL(new String[]{location, date, time});
 		
 		//Document object to retreive to
 		Document doc = null;
@@ -229,6 +178,29 @@ public class GeneratingScreen extends Activity implements Runnable {
         
         finish();
 		
+	}
+	
+	/**
+	 * Abstracts building the request URL out of main execution
+	 * @param components Extensible array, expecting first three values to be location, date, time
+	 * @return constructed URL
+	 */
+	private String buildURL(String[] components) {
+		final String BASE_URL = "http://www.campusdish.com/en-US/CSMA/WilliamMary/Menus/";
+		final String ORG_ID = "&OrgID=231624";
+		final String STATIC_PARAMS = "&ShowPrice=False&ShowNutrition=True";
+		
+		HashMap<String, String> location_map = new HashMap<String, String>();
+		HashMap<String, Integer> time_map = new HashMap<String, Integer>();
+		
+		location_map.put("Sadler", "SadlerCenterRFoC.htm?LocationName=Sadler%20Center%20RFoC");
+		location_map.put("Commons", "CommonsFreshFoodCompany.htm?LocationName=Commons%20Fresh%20Food%20Company");
+		location_map.put("Marketplace", "Marketplace.htm?LocationName=Marketplace");
+		time_map.put("Breakfast", 1);
+		time_map.put("Lunch", 16);
+		time_map.put("Dinner", 17);
+			
+		return BASE_URL + location_map.get(components[0]) + ORG_ID + "&Date=" + components[1] + "&MealID=" + time_map.get(components[2]) + STATIC_PARAMS;
 	}
 
 }
