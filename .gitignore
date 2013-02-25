@@ -1,0 +1,10 @@
+# Compilied files
+bin/
+*.class
+*.apk
+
+# Generated files
+gen/
+
+# Eclipse files
+.settings
